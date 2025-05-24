@@ -1,6 +1,6 @@
 import UserModel from '../model/user.model';
 import { UserEntity } from '../entity/user.entity';
-import { ModelStatic, Op } from 'sequelize';
+import { ModelStatic } from 'sequelize';
 import {
   CreateUserCriteria,
   DeleteUserCriteria,
@@ -9,7 +9,6 @@ import {
   UpdateUserCriteria,
   UserRepositoryDependencies
 } from '../interfaces/';
-import { CreateUserData } from '../interfaces';
 
 export class UserRepository implements IUserRepository {
   protected model: ModelStatic<UserModel>;
@@ -37,11 +36,8 @@ export class UserRepository implements IUserRepository {
   }
 
   public async create(data: CreateUserCriteria): Promise<UserEntity> {
-    const createdUser = await this.model.create(data);
-    const user = createdUser.get({ plain: true });
-    console.log('--------------------->');
-    console.log(user);
-    return new UserEntity(user);
+    const user = await this.model.create(data);
+    return new UserEntity(user.dataValues);
   }
 
   public async find(

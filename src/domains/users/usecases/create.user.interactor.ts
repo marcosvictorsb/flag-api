@@ -4,9 +4,6 @@ import {
   InputCreateUser
 } from '../interfaces/';
 import { HttpResponse, IPresenter } from '../../../protocols';
-import logger from '../../../config/logger';
-import UserModel from '../model/user.model';
-import { ModelStatic } from 'sequelize';
 import { CreateUserGateway } from '../gateways/create.user.gateway';
 
 export class CreateUserInteractor {
@@ -19,12 +16,12 @@ export class CreateUserInteractor {
   }
 
   async execute(input: InputCreateUser): Promise<HttpResponse> {
-    this.gateway.loggerInfo('Iniciado o request para criar o usuario', {
-      input: JSON.stringify(input)
-    });
-
     try {
       const { email, name, password_hash } = input;
+      this.gateway.loggerInfo('Iniciado o request para criar o usuario', {
+        input: JSON.stringify({ email, name })
+      });
+
       const existingUser = await this.gateway.findUser({ email });
       if (existingUser) {
         this.gateway.loggerInfo('Usuario já existe para esse email', { email });
@@ -37,7 +34,6 @@ export class CreateUserInteractor {
       };
 
       const userCreated = await this.gateway.createUser(criteria);
-      console.log(userCreated);
       if (!userCreated) {
         this.gateway.loggerInfo('Usuário não encontrado', { email });
         return this.presenter.notFound('Usuário não encontrado');
@@ -50,7 +46,11 @@ export class CreateUserInteractor {
         })
       });
 
-      return this.presenter.created(userCreated);
+      return this.presenter.created({
+        id: userCreated.id,
+        email: userCreated.email,
+        name: userCreated.name
+      });
     } catch (error) {
       this.gateway.loggerError('Erro ao criar usuário', { error });
       return this.presenter.serverError('Erro ao criar usuário');

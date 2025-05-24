@@ -1,5 +1,5 @@
 export class UserEntity {
-  public readonly id: number;
+  public readonly id?: number;
   public readonly name: string;
   public readonly email: string;
   public readonly password_hash: string;
@@ -8,7 +8,7 @@ export class UserEntity {
   public readonly deleted_at?: Date;
 
   constructor(params: {
-    id: number;
+    id?: number;
     name: string;
     email: string;
     password_hash: string;
