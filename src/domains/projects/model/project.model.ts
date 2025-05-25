@@ -2,24 +2,11 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../../../infra/database/connection/mysql';
 import UserModel from '../../../../src/domains/users/model/user.model';
 
-interface ProjectModelAttributes {
-  id?: number;
-  name: string;
-  description?: string;
-  id_user: number;
-  created_at?: Date;
-  updated_at?: Date;
-  deleted_at?: Date;
-}
-
-class ProjectModel
-  extends Model<ProjectModelAttributes>
-  implements ProjectModelAttributes
-{
+class ProjectModel extends Model {
   declare id?: number;
   declare name: string;
-  declare description?: string;
-  declare id_user: number;
+  declare description: string;
+  declare id_user?: number;
   declare created_at?: Date;
   declare updated_at?: Date;
   declare deleted_at?: Date;

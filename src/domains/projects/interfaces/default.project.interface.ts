@@ -13,6 +13,7 @@ export type FindProjectCriteria = {
   id?: number;
   name?: string;
   id_user?: number;
+  description?: string;
 };
 
 export type DeleteProjectCriteria = {

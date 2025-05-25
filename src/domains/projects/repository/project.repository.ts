@@ -28,6 +28,10 @@ export class ProjectRepository implements IProjectRepository {
       whereConditions['name'] = criteria.name;
     }
 
+    if (criteria.id_user) {
+      whereConditions['id_user'] = criteria.id_user;
+    }
+
     return whereConditions;
   }
 
@@ -62,7 +66,15 @@ export class ProjectRepository implements IProjectRepository {
 
     if (!projects || projects.length === 0) return [];
 
-    return projects.map((Project: any) => new ProjectEntity(Project));
+    return projects.map(
+      (project: any) =>
+        new ProjectEntity({
+          id: project.id,
+          name: project.name,
+          description: project.description,
+          id_user: project.id_user
+        })
+    );
   }
 
   public async update(
