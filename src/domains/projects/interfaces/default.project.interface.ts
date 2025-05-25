@@ -1,0 +1,41 @@
+import logger from '../../../../src/config/logger';
+import { ProjectEntity } from '../entity';
+import { ModelStatic } from 'sequelize';
+import ProjectModel from '../model/project.model';
+
+export type CreateProjectCriteria = {
+  name: string;
+  id_user: number;
+  description?: string;
+};
+
+export type FindProjectCriteria = {
+  id?: number;
+  name?: string;
+  id_user?: number;
+};
+
+export type DeleteProjectCriteria = {
+  id: number;
+  name?: string;
+};
+
+export type UpdateProjectCriteria = {
+  id: number;
+  name?: string;
+};
+
+export interface IProjectRepository {
+  create(criteria: CreateProjectCriteria): Promise<ProjectEntity>;
+  find(criteria: FindProjectCriteria): Promise<ProjectEntity | undefined>;
+  findAll(criteria: FindProjectCriteria): Promise<ProjectEntity[]>;
+  update(
+    criteria: DeleteProjectCriteria,
+    data: Partial<ProjectEntity>
+  ): Promise<boolean>;
+  delete(criteria: DeleteProjectCriteria): Promise<boolean>;
+}
+
+export type ProjectRepositoryDependencies = {
+  model: ModelStatic<ProjectModel>;
+};

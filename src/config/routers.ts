@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import userRoutes from '../domains/users/routers';
+import projectRoutes from '../domains/projects/routes';
 
 const routers = Router();
 
@@ -8,6 +9,7 @@ routers.get('/healhcheck', (request: Request, response: Response) => {
 });
 
 routers.use('/users', userRoutes);
+routers.use('/projects', projectRoutes);
 
 // const notFound = (request: Request, response: Response) => {
 //   response.status(404).json({ rota: 'Route does not exist' });

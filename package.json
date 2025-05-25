@@ -7,7 +7,8 @@
     "start": "nodemon --watch src --ext ts --exec ts-node server.ts",
     "lint": "eslint --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "migration": "npx sequelize-cli db:migrate"
+    "migration": "npx sequelize-cli db:migrate",
+    "migration:create": "npx sequelize-cli migration:generate --name"
   },
   "repository": {
     "type": "git",
