@@ -73,7 +73,7 @@ function create_controller_content {
 
     echo "import { Request, Response } from 'express';"
     echo "import { ${formatted_name}Interactor } from '../usecases/${use_case_name}.interactor';"
-    echo "import { ${formatted_name}ControllerParams } from '../interfaces/${use_case_name}.interface';"
+    echo "import { ${formatted_name}ControllerDependencies } from '../interfaces/${use_case_name}.interface';"
     echo ""
     echo "interface I${formatted_name}Controller {"
     echo "  ${camel_case_name}(request: Request, response: Response): Promise<Response>;"
@@ -82,7 +82,7 @@ function create_controller_content {
     echo "export class ${formatted_name}Controller implements I${formatted_name}Controller {"
     echo "  protected interactor: ${formatted_name}Interactor;"
     echo ""
-    echo "  constructor(params: ${formatted_name}ControllerParams) {"
+    echo "  constructor(params: ${formatted_name}ControllerDependencies) {"
     echo "    this.interactor = params.interactor;"
     echo "  }"
     echo ""
@@ -138,14 +138,14 @@ function create_domain_gateway_content {
     local entity_name=$(get_entity_name "$use_case_name")
     local method_name=$(format_name "$use_case_name" "camel")  # Nome do método em camelCase
 
-    echo "import { I${entity_name}Repository, I${formatted_name}Gateway, ${formatted_name}GatewayParams, ${formatted_name}Data } from '../interfaces/';"
+    echo "import { I${entity_name}Repository, I${formatted_name}Gateway, ${formatted_name}GatewayDependencies, ${formatted_name}Data } from '../interfaces/';"
     echo "import { ${entity_name}Entity } from '../entities/${entity_name,,}.entity';"
     echo "import { Mix${formatted_name}Service } from '../../../adapters/gateways/${use_case_name}.gateway';"
     echo ""
     echo "export class ${formatted_name}Gateway extends Mix${formatted_name}Service implements I${formatted_name}Gateway {"
     echo "  ${entity_name,,}Repository: I${entity_name}Repository;"
     echo ""
-    echo "  constructor(params: ${formatted_name}GatewayParams) {"
+    echo "  constructor(params: ${formatted_name}GatewayDependencies) {"
     echo "    super();"
     echo "    this.${entity_name,,}Repository = params.repository;"
     echo "  }"
@@ -174,7 +174,7 @@ function create_interface_content {
     echo "  // Defina os campos de dados aqui"
     echo "};"
     echo ""
-    echo "export type ${formatted_name}GatewayParams = {"
+    echo "export type ${formatted_name}GatewayDependencies = {"
     echo "  repository: I${entity_name}Repository;"
     echo "  logger: typeof logger;"
     echo "};"
@@ -220,12 +220,12 @@ else
     # Cria a estrutura de pastas dentro do novo domínio
     mkdir -p "$domain_path/adapter"
     mkdir -p "$domain_path/controllers"
-    mkdir -p "$domain_path/entities"
+    mkdir -p "$domain_path/entity"
     mkdir -p "$domain_path/factories"
     mkdir -p "$domain_path/gateways"
     mkdir -p "$domain_path/interfaces"
     mkdir -p "$domain_path/model"
-    mkdir -p "$domain_path/repositories"
+    mkdir -p "$domain_path/repository"
     mkdir -p "$domain_path/routes"
     mkdir -p "$domain_path/usecases"
     mkdir -p "$domain_path/validator"
@@ -265,7 +265,7 @@ echo "// ${use_case_name}.factory.ts" > "$domain_path/factories/$use_case_name.f
 create_controller_content "$use_case_name" > "$domain_path/controllers/$use_case_name.controller.ts"
 
 # Cria o arquivo gateway na pasta src/adapters/gateway
-adapter_gateway_path="src/adapters/gateway"
+adapter_gateway_path="src/adapters/gateways"
 mkdir -p "$adapter_gateway_path"
 create_gateway_content "$use_case_name" > "$adapter_gateway_path/$use_case_name.gateway.ts"
 

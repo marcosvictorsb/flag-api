@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs';
 import logger from '../../../config/logger';
 import { ProjectRepository } from '../repository';
 import { FindProjectsGateway } from '../gateways';

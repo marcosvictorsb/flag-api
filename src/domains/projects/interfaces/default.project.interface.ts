@@ -22,8 +22,8 @@ export type DeleteProjectCriteria = {
 };
 
 export type UpdateProjectCriteria = {
-  id: number;
   name?: string;
+  description?: string;
 };
 
 export interface IProjectRepository {
@@ -31,7 +31,7 @@ export interface IProjectRepository {
   find(criteria: FindProjectCriteria): Promise<ProjectEntity | undefined>;
   findAll(criteria: FindProjectCriteria): Promise<ProjectEntity[]>;
   update(
-    criteria: DeleteProjectCriteria,
+    criteria: UpdateProjectCriteria,
     data: Partial<ProjectEntity>
   ): Promise<boolean>;
   delete(criteria: DeleteProjectCriteria): Promise<boolean>;

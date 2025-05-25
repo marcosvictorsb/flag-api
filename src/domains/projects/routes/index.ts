@@ -3,7 +3,12 @@ import * as factories from '../factories';
 import { validateSchema } from '../../../middlewares/validate.schema';
 import { createProjectSchema } from '../schemas/create.project.validator';
 
-const { createProjectController, findProjectController } = factories;
+const {
+  createProjectController,
+  findProjectController,
+  updateProjectController,
+  deleteProjectController
+} = factories;
 
 const router = Router();
 
@@ -16,6 +21,14 @@ router.post(
 
 router.get('/', (request: Request, response: Response) =>
   findProjectController.findProjects(request, response)
+);
+
+router.put('/', (request: Request, response: Response) =>
+  updateProjectController.updateProject(request, response)
+);
+
+router.delete('/', (request: Request, response: Response) =>
+  deleteProjectController.deleteProject(request, response)
 );
 
 export default router;

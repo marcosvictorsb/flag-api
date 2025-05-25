@@ -110,3 +110,5 @@ dist
 source/
 .deploys
 current
+
+src/domains/authentication/

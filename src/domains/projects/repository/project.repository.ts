@@ -78,8 +78,8 @@ export class ProjectRepository implements IProjectRepository {
   }
 
   public async update(
-    criteria: UpdateProjectCriteria,
-    data: Partial<ProjectEntity>
+    data: UpdateProjectCriteria,
+    criteria: Partial<ProjectEntity>
   ): Promise<boolean> {
     const [affectedRows] = await this.model.update(data, {
       where: { id: criteria.id }

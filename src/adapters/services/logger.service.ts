@@ -14,6 +14,8 @@ export type DataLogOutput = {
   email?: string;
 
   id_bank?: number;
+
+  id_project?: number;
 };
 
 type LoggerServiceDependencies = {
