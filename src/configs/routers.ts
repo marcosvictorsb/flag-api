@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
-import userRoutes from '../domains/api/users/routers';
-import projectRoutes from '../domains/api/projects/routes';
-import authRoutes from '../domains/api/authentication/routes';
+import userRoutes from '@domains/api/users/routers';
+import projectRoutes from '@domains/api/projects/routes';
+import authRoutes from '@domains/api/authentication/routes';
 
 const routers = Router();
 

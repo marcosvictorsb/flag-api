@@ -1,6 +1,6 @@
 import { IPresenter } from '@protocols/index';
 import { DataLogOutput } from '@adapters/services';
-import logger from '@config/logger';
+import { logger } from '@configs/logger';
 import { ProjectEntity } from '../entity/project.entity';
 import {
   CreateProjectCriteria,

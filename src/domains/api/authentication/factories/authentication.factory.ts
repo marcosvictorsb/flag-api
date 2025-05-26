@@ -5,7 +5,7 @@ import UserModel from '@domains/api/users/model/user.model';
 import { Presenter } from '@protocols/presenter';
 import { IAuthenticationGatewayDependencies } from '@domains/api/authentication/interfaces';
 import { AuthenticationController } from '@domains/api/authentication/controllers/authentication.controller';
-import logger from '@config/logger';
+import { logger } from '@configs/logger';
 
 const params: IAuthenticationGatewayDependencies = {
   userRepository: new UserRepository({ model: UserModel }),

@@ -1,4 +1,4 @@
-import logger from '@config/logger';
+import { logger } from '@configs/logger';
 import { UserEntity } from '@domains/api/users/entity';
 import { ModelStatic } from 'sequelize';
 import UserModel from '@domains/api/users/model/user.model';

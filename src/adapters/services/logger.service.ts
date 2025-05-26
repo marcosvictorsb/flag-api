@@ -1,4 +1,4 @@
-import logger from '../../config/logger';
+import { logger } from '@configs/logger';
 
 export type DataLogOutput = {
   data?: any;

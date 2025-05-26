@@ -3,10 +3,10 @@ import * as factories from '../factories';
 
 const { authenticationController } = factories;
 
-const router = Router();
+const authRoutes = Router();
 
-router.post('/', (request, response) =>
+authRoutes.post('/', (request, response) =>
   authenticationController.authentication(request, response)
 );
 
-export default router;
+export default authRoutes;

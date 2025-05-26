@@ -1,4 +1,4 @@
-import logger from '@config/logger';
+import { logger } from '@configs/logger';
 import { ProjectRepository } from '@domains/api/projects/repository';
 import { FindProjectsGateway } from '@domains/api/projects/gateways';
 import { FindProjectsInteractor } from '@domains/api/projects/usecases/find.projects.interactor';

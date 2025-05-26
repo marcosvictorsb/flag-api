@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import logger from '@config/logger';
+import { logger } from '@configs/logger';
 import { UserRepository } from '@domains/api/users/repository';
 import { CreateUserGateway } from '@domains/api/users/gateways';
 import { CreateUserInteractor } from '@domains/api/users/usecases/create.user.interactor';

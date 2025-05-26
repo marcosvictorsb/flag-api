@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { Dialect, Sequelize } from 'sequelize';
-import logger from '../../../config/logger';
+import { logger } from '@configs/logger';
 
 const dbUser = process.env.DB_USER as string;
 const dbPassword = process.env.DB_PASSWORD as string;

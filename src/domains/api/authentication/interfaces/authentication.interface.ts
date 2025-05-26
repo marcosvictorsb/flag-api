@@ -4,7 +4,7 @@ import {
   IUserRepository
 } from '@domains/api/users/interfaces';
 import { HttpResponse } from '@protocols/http';
-import logger from '@config/logger';
+import { logger } from '@configs/logger';
 import { DataLogOutput } from '@adapters/services';
 import { AuthenticationInteractor } from '@domains/api/authentication/usecases';
 

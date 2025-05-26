@@ -16,7 +16,7 @@
     "baseUrl": "./src",
     "paths": {
       "@adapters/*": ["adapters/*"],
-      "@config/*": ["config/*"],
+      "@configs/*": ["configs/*"],
       "@domains/*": ["domains/*"],
       "@infra/*": ["infra/*"],
       "@middlewares/*": ["middlewares/*"],

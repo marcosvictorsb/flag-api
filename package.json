@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "_moduleAliases": {
-    "@adapters": "dist/adapters",
-    "@config": "dist/config",
-    "@domains": "dist/domains",
-    "@common": "dist/common",
-    "@infra": "dist/infra",
-    "@middlewares": "dist/middlewares",
-    "@protocols": "dist/protocols",
-    "@tasks": "dist/tasks"
+    "@adapters": "src/adapters",
+    "@configs": "src/configs",
+    "@domains": "src/domains",
+    "@common": "src/common",
+    "@infra": "src/infra",
+    "@middlewares": "src/middlewares",
+    "@protocols": "src/protocols",
+    "@tasks": "src/tasks"
   },
   "scripts": {
-    "start": "nodemon --watch src --ext ts --exec ts-node server.ts",
+    "start": "nodemon --watch src --ext ts --exec ts-node -r module-alias/register src/server.ts",
     "lint": "eslint --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "migration": "npx sequelize-cli db:migrate",
