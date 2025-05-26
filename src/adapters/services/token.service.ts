@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
-import { UserEntity } from '../../domains/users/entity/user.entity';
+import { UserEntity } from '../../domains/api/users/entity/user.entity';
 
 dotenv.config();
 

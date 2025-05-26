@@ -13,16 +13,15 @@
     "strictNullChecks": true,
     "resolveJsonModule": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "*": [
-        "*",
-        "src/*",
-        "src/setup/*",
-        "src/logic/*",
-        "src/models/*",
-        "config/*"
-      ]
+      "@adapters/*": ["adapters/*"],
+      "@config/*": ["config/*"],
+      "@domains/*": ["domains/*"],
+      "@infra/*": ["infra/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@protocols/*": ["protocols/*"],
+      "@tasks/*": ["tasks/*"]
     }
   },
   "include": ["src"],
