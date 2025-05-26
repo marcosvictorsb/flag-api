@@ -75,6 +75,7 @@ export class EnvironmentRepository implements IEnvironmentRepository {
         new EnvironmentEntity({
           id: environment.id,
           type: environment.type,
+          key: environment.key,
           id_project: environment.id_project
         })
     );

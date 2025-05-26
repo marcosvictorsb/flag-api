@@ -21,7 +21,8 @@
       "@infra/*": ["infra/*"],
       "@middlewares/*": ["middlewares/*"],
       "@protocols/*": ["protocols/*"],
-      "@tasks/*": ["tasks/*"]
+      "@tasks/*": ["tasks/*"],
+      "@shared/*": ["shared/*"]
     }
   },
   "include": ["src"],

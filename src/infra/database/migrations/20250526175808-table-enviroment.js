@@ -6,6 +6,7 @@ module.exports = {
     await queryInterface.createTable('environments', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       type: { type: Sequelize.STRING },
+      key: { type: Sequelize.STRING, allowNull: false },
       id_project: {
         allowNull: false,
         type: Sequelize.INTEGER,

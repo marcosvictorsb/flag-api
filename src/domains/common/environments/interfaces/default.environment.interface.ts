@@ -10,6 +10,7 @@ export enum EnvironmentTypes {
 export type CreateEnvironmentCriteria = {
   type: string;
   id_project: number;
+  key: string;
 };
 
 export type FindEnvironmentCriteria = {

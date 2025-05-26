@@ -11,7 +11,8 @@
     "@infra": "src/infra",
     "@middlewares": "src/middlewares",
     "@protocols": "src/protocols",
-    "@tasks": "src/tasks"
+    "@tasks": "src/tasks",
+    "@shared": "src/shared"
   },
   "scripts": {
     "start": "nodemon --watch src --ext ts --exec ts-node -r module-alias/register src/server.ts",

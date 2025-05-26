@@ -47,7 +47,6 @@ export class CreateProjectInteractor {
       const environmentInput: InputCreateEnvironment = {
         id_project: project.id as number
       };
-
       await this.interactorEnvironment.execute(environmentInput);
 
       return this.presenter.created(project);

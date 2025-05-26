@@ -5,6 +5,7 @@ import ProjectModel from '@domains/api/projects/model/project.model';
 class EnvironmentModel extends Model {
   declare id?: number;
   declare type: string;
+  declare key: string;
   declare id_project: number;
   declare created_at?: Date;
   declare updated_at?: Date;
@@ -20,6 +21,7 @@ EnvironmentModel.init(
       type: DataTypes.INTEGER
     },
     type: { type: DataTypes.STRING },
+    key: { type: DataTypes.STRING, allowNull: false },
     id_project: {
       allowNull: false,
       type: DataTypes.INTEGER,

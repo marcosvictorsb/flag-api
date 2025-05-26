@@ -4,7 +4,7 @@ import {
   CreateEnvironmentInteractorDependencies,
   EnvironmentTypes
 } from '@domains/common/environments';
-import { IPresenter } from '@protocols/presenter';
+import { Utils } from '@shared/utils';
 
 export class CreateEnvironmentInteractor {
   protected gateway: ICreateEnvironmentGateway;
@@ -19,11 +19,13 @@ export class CreateEnvironmentInteractor {
     });
     await this.gateway.createEnvironment({
       id_project: input.id_project,
-      type: EnvironmentTypes.SandBox
+      type: EnvironmentTypes.SandBox,
+      key: Utils.generateApiKey()
     });
     await this.gateway.createEnvironment({
       id_project: input.id_project,
-      type: EnvironmentTypes.Production
+      type: EnvironmentTypes.Production,
+      key: Utils.generateApiKey()
     });
     this.gateway.loggerInfo('Ambientes criado com sucesso');
   }
