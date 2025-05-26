@@ -9,19 +9,44 @@ import {
 } from '@domains/api/projects/interfaces';
 import { CreateProjectController } from '@domains/api/projects/controllers/create.project.controller';
 import { Presenter } from '@protocols/presenter';
+import {
+  CreateEnvironmentGateway,
+  CreateEnvironmentGatewayDependencies,
+  CreateEnvironmentInteractor,
+  EnvironmentRepository,
+  ICreateEnvironmentGateway
+} from '@domains/common';
+import EnvironmentModel from '@domains/common/environments/model/environment.model';
 
 const projectRepository = new ProjectRepository({ model: ProjectModel });
+const environmentRepository = new EnvironmentRepository({
+  model: EnvironmentModel
+});
 
 const gateway: CreateProjectGatewayDependencies = {
   repository: projectRepository,
   logging: logger
 };
 
+const paramEnviromentGateway: CreateEnvironmentGatewayDependencies = {
+  repository: environmentRepository,
+  logging: logger
+};
+
+const gatewayCreateEnvironment = new CreateEnvironmentGateway(
+  paramEnviromentGateway
+);
+
+const interactorEnvironment = new CreateEnvironmentInteractor({
+  gateway: gatewayCreateEnvironment
+});
+
 const projectGateway = new CreateProjectGateway(gateway);
 const presenter = new Presenter();
 const params: CreateProjectInteractorDependencies = {
   gateway: projectGateway,
-  presenter
+  presenter,
+  interactorEnvironment
 };
 
 const interactor = new CreateProjectInteractor(params);

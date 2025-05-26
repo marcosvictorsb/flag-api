@@ -5,14 +5,21 @@ import {
 } from '@domains/api/projects/interfaces';
 import { IPresenter } from '@protocols/presenter';
 import { HttpResponse } from '@protocols/http';
+import { CreateEnvironmentInteractor } from '@domains/common';
+import {
+  EnvironmentTypes,
+  InputCreateEnvironment
+} from '@domains/common/environments/';
 
 export class CreateProjectInteractor {
   protected gateway: ICreateProjectGateway;
   protected presenter: IPresenter;
+  protected interactorEnvironment: CreateEnvironmentInteractor;
 
   constructor(params: CreateProjectInteractorDependencies) {
     this.gateway = params.gateway;
     this.presenter = params.presenter;
+    this.interactorEnvironment = params.interactorEnvironment;
   }
 
   async execute(input: InputCreateProject): Promise<HttpResponse> {
@@ -36,9 +43,16 @@ export class CreateProjectInteractor {
       this.gateway.loggerInfo('Projeto criado com sucesso', {
         requestTxt: JSON.stringify(project)
       });
+
+      const environmentInput: InputCreateEnvironment = {
+        id_project: project.id as number
+      };
+
+      await this.interactorEnvironment.execute(environmentInput);
+
       return this.presenter.created(project);
     } catch (error) {
-      this.gateway.loggerInfo('Erro ao criar projeto', error);
+      this.gateway.loggerError('Erro ao criar projeto', error);
       return this.presenter.serverError('Erro ao criar projeto');
     }
   }

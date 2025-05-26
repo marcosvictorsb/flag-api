@@ -8,6 +8,7 @@ import {
   IProjectRepository
 } from '@domains/api/projects/interfaces';
 import { CreateProjectInteractor } from '@domains/api/projects/usecases/';
+import { CreateEnvironmentInteractor } from '@domains/common';
 
 export type InputCreateProject = {
   name: string;
@@ -30,6 +31,7 @@ export interface ICreateProjectGateway {
 export type CreateProjectInteractorDependencies = {
   gateway: ICreateProjectGateway;
   presenter: IPresenter;
+  interactorEnvironment: CreateEnvironmentInteractor;
 };
 
 export type CreateProjectControllerDependencies = {
