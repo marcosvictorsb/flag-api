@@ -15,6 +15,6 @@ export class AuthenticationController {
   ): Promise<Response> {
     const { email, password } = request.body;
     const result = await this.interactor.execute(email, password);
-    return response.status(result.status).json(result);
+    return response.status(result.status).json(result.body);
   }
 }

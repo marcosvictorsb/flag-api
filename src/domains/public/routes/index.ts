@@ -1,7 +1,7 @@
-import { request, Request, Response, Router } from 'express';
+import { Request, Response, Router } from 'express';
 import * as factories from '../factories';
 import { validateSchema } from '@middlewares/validate.schema';
-import { findFeatureFlagSchema, headersSchema } from '../schemas';
+import { findFeatureFlagSchema } from '../schemas';
 import { ValideApiKey } from '@middlewares/auth.key.middlewares';
 
 const { findFeatureFlagController } = factories;
@@ -9,7 +9,7 @@ const { findFeatureFlagController } = factories;
 const router = Router();
 
 router.get(
-  '/:env/flags',
+  '/v1/:env/flags',
   ValideApiKey,
   validateSchema(findFeatureFlagSchema),
   (request: Request, response: Response) =>

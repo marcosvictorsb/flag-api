@@ -11,7 +11,7 @@ routers.get('/healhcheck', (request: Request, response: Response) => {
   response.status(200).json({ message: 'API is running' });
 });
 
-routers.use('/', publicRoutes);
+routers.use('/api', publicRoutes);
 routers.use('/users', userRoutes);
 routers.use('/projects', projectRoutes);
 routers.use('/authenticate', authRoutes);

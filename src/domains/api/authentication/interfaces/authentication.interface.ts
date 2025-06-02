@@ -21,6 +21,6 @@ export interface IAuthenticationGateway {
   findUser(criteria: FindUserCriteria): Promise<UserEntity | undefined>;
   loggerInfo(message: string, data?: DataLogOutput): void;
   loggerError(message: string, data?: DataLogOutput): void;
-  sign(user: UserEntity): string;
+  sign(user: Partial<UserEntity>): string;
   comparePasswords(password: string, userPassword: string): boolean;
 }

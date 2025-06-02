@@ -36,7 +36,10 @@ export class AuthenticationInteractor {
         return this.presenter.conflict('Email ou senha está incorreto');
       }
 
-      const credential = this.gateway.sign(user);
+      const credential = this.gateway.sign({
+        name: user.name,
+        email: user.email
+      });
 
       return this.presenter.OK({
         name: user.name,
@@ -50,10 +53,6 @@ export class AuthenticationInteractor {
   }
 
   private isCorretPassword(password: string, userPassword: string): boolean {
-    console.log({
-      password,
-      userPassword
-    });
     return this.gateway.comparePasswords(password, userPassword) || false;
   }
 }

@@ -28,8 +28,8 @@ export type FindFeatureFlagCriteria = {
   rollout?: number;
   variants?: Array<{ name: string; weight: number }>;
   targets?: Array<number | string>;
-  id_user: number;
-  id_project: number;
+  id_user?: number;
+  id_project?: number;
 };
 
 export type DeleteFeatureFlagCriteria = {
