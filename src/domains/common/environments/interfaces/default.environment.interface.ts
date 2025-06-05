@@ -3,8 +3,8 @@ import { ModelStatic } from 'sequelize';
 import EnvironmentModel from '@domains/common/environments/model/environment.model';
 
 export enum EnvironmentTypes {
-  SandBox = 'sandbox',
-  Production = 'production'
+  SANDBOX = 'sandbox',
+  PRODUCTION = 'production'
 }
 
 export type CreateEnvironmentCriteria = {
@@ -18,6 +18,7 @@ export type FindEnvironmentCriteria = {
   name?: string;
   type?: string;
   id_project?: number;
+  key?: string;
 };
 
 export type DeleteEnvironmentCriteria = {

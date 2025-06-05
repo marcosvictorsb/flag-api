@@ -10,13 +10,15 @@ import {
 import { FindFeatureFlagInteractor } from '@domains/api/feature_flags';
 import {
   EnvironmentEntity,
+  EnvironmentTypes,
   FindEnvironmentCriteria,
   IEnvironmentRepository
 } from '@domains/common';
 
 export type InputFindFeatureFlags = {
-  environment: EnvironmentEntity;
+  envType: EnvironmentTypes;
   key: string;
+  featureName: string;
 };
 
 export type FindFeatureFlagGatewayDependencies = {
@@ -26,7 +28,6 @@ export type FindFeatureFlagGatewayDependencies = {
 };
 
 export interface IFindFeatureFlagGateway {
-  // createFeatureFlag(data: FindFeatureFlagCriteria): Promise<FeatureFlagEntity>;
   findFeatureFlag(
     criteria: FindFeatureFlagCriteria
   ): Promise<FeatureFlagEntity | undefined>;

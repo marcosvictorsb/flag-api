@@ -38,7 +38,8 @@ export class AuthenticationInteractor {
 
       const credential = this.gateway.sign({
         name: user.name,
-        email: user.email
+        email: user.email,
+        id: user.id
       });
 
       return this.presenter.OK({

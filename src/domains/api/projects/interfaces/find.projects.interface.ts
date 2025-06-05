@@ -9,8 +9,8 @@ import {
 import { FindProjectsInteractor } from '@domains/api/projects/usecases/';
 
 export type InputFindProject = {
-  id: number;
-  name: string;
+  id?: number;
+  name?: string;
   id_user: number;
   description?: string;
 };

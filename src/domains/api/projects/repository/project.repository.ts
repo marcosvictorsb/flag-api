@@ -9,6 +9,7 @@ import {
   UpdateProjectCriteria,
   ProjectRepositoryDependencies
 } from '@domains/api/projects/interfaces';
+import { Utils } from '@shared/utils';
 
 export class ProjectRepository implements IProjectRepository {
   protected model: ModelStatic<ProjectModel>;
@@ -72,7 +73,9 @@ export class ProjectRepository implements IProjectRepository {
           id: project.id,
           name: project.name,
           description: project.description,
-          id_user: project.id_user
+          identifier: project.uuid,
+          id_user: project.id_user,
+          updated_at: Utils.convertISOToDDMMYYYYHHMMSS(project.updated_at)
         })
     );
   }

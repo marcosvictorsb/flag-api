@@ -1,1 +1,1 @@
-export * from './autentication.interactor';
+export * from './authentication.interactor';

@@ -17,7 +17,9 @@ export class FindProjectsInteractor {
 
   async execute(input: InputFindProject): Promise<HttpResponse> {
     try {
-      this.gateway.loggerInfo('Iniciando busca de projetos');
+      this.gateway.loggerInfo('Iniciando busca de projetos', {
+        requestTxt: JSON.stringify(input)
+      });
       const projects = await this.gateway.findProjects({
         id_user: input.id_user
       });

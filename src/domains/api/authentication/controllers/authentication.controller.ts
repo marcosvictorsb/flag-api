@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { AuthenticationDependencies } from '@domains/api/authentication/interfaces';
-import { AuthenticationInteractor } from '@domains/api/authentication/usecases/autentication.interactor';
+import { AuthenticationInteractor } from '@domains/api/authentication/usecases/authentication.interactor';
 
 export class AuthenticationController {
   private interactor: AuthenticationInteractor;

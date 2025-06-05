@@ -2,6 +2,8 @@ import { Request, Response, Router } from 'express';
 import * as factories from '@domains/api/projects/factories';
 import { validateSchema } from '@middlewares/validate.schema';
 import { createProjectSchema } from '@domains/api/projects/schemas/';
+import { CustomRequest } from '../controllers';
+import { authMiddleware } from '@middlewares/auth.jwt.middlewares';
 
 const {
   createProjectController,
@@ -14,13 +16,17 @@ const router = Router();
 
 router.post(
   '/',
+  authMiddleware,
   validateSchema(createProjectSchema),
   (request: Request, response: Response) =>
     createProjectController.createProject(request, response)
 );
 
-router.get('/', (request: Request, response: Response) =>
-  findProjectController.findProjects(request, response)
+router.get('/', authMiddleware, (request: Request, response: Response) =>
+  findProjectController.findProjects(
+    request as unknown as CustomRequest,
+    response
+  )
 );
 
 router.put('/', (request: Request, response: Response) =>

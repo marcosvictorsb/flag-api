@@ -1,4 +1,5 @@
 import {
+  CreateProjectCriteria,
   CreateProjectInteractorDependencies,
   ICreateProjectGateway,
   InputCreateProject
@@ -10,6 +11,7 @@ import {
   EnvironmentTypes,
   InputCreateEnvironment
 } from '@domains/common/environments/';
+import uuid4 from 'uuid4';
 
 export class CreateProjectInteractor {
   protected gateway: ICreateProjectGateway;
@@ -38,8 +40,13 @@ export class CreateProjectInteractor {
         });
         return this.presenter.conflict('Projeto já existe');
       }
-
-      const project = await this.gateway.createProject(input);
+      const criteria: CreateProjectCriteria = {
+        uuid: uuid4(),
+        name: input.name,
+        id_user: input.id_user,
+        description: input.description
+      };
+      const project = await this.gateway.createProject(criteria);
       this.gateway.loggerInfo('Projeto criado com sucesso', {
         requestTxt: JSON.stringify(project)
       });

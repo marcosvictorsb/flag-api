@@ -19,12 +19,12 @@ export class CreateEnvironmentInteractor {
     });
     await this.gateway.createEnvironment({
       id_project: input.id_project,
-      type: EnvironmentTypes.SandBox,
+      type: EnvironmentTypes.SANDBOX,
       key: Utils.generateApiKey()
     });
     await this.gateway.createEnvironment({
       id_project: input.id_project,
-      type: EnvironmentTypes.Production,
+      type: EnvironmentTypes.PRODUCTION,
       key: Utils.generateApiKey()
     });
     this.gateway.loggerInfo('Ambientes criado com sucesso');

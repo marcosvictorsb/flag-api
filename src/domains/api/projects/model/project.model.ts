@@ -6,6 +6,7 @@ class ProjectModel extends Model {
   declare id?: number;
   declare name: string;
   declare description: string;
+  declare uuid: string;
   declare id_user?: number;
   declare created_at?: Date;
   declare updated_at?: Date;
@@ -22,6 +23,7 @@ ProjectModel.init(
     },
     name: { type: DataTypes.STRING },
     description: { type: DataTypes.STRING },
+    uuid: { type: DataTypes.UUID },
     id_user: {
       allowNull: false,
       type: DataTypes.INTEGER,

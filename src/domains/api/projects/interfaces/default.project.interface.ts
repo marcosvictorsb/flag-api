@@ -3,6 +3,7 @@ import { ModelStatic } from 'sequelize';
 import ProjectModel from '@domains/api/projects/model/project.model';
 
 export type CreateProjectCriteria = {
+  uuid: string;
   name: string;
   id_user: number;
   description?: string;
