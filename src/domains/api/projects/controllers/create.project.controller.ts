@@ -4,10 +4,7 @@ import {
   CreateProjectControllerDependencies,
   InputCreateProject
 } from '@domains/api/projects/interfaces/create.project.interface';
-
-interface CustomRequest extends Request {
-  userId?: number;
-}
+import { CustomRequest } from '@protocols/http';
 
 interface ICreateProjectController {
   createProject(request: CustomRequest, response: Response): Promise<Response>;
@@ -27,7 +24,7 @@ export class CreateProjectController implements ICreateProjectController {
     const input: InputCreateProject = {
       name: request.body.name,
       description: request.body.description,
-      id_user: request.userId as number
+      id_user: request.user?.id as number
     };
     const result = await this.interactor.execute(input);
     return response.status(result.status).json(result.body);

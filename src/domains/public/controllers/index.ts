@@ -1,1 +1,1 @@
-export * from './find.feature.flag.controller';
+export * from '../../api/feature_flags/controllers/find.feature.flag.controller';

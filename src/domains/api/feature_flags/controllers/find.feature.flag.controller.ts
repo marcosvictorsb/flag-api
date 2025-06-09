@@ -5,9 +5,11 @@ import {
   InputFindFeatureFlags
 } from '@domains/api/feature_flags/interfaces/';
 import { EnvironmentEntity, EnvironmentTypes } from '@domains/common';
+import { CustomRequest } from '@protocols/http';
+
 
 interface IFindFeatureFlagController {
-  findFeatureFlags(request: Request, response: Response): Promise<Response>;
+  findFeatureFlags(request: CustomRequest, response: Response): Promise<Response>;
 }
 
 export class FindFeatureFlagController implements IFindFeatureFlagController {
@@ -18,13 +20,12 @@ export class FindFeatureFlagController implements IFindFeatureFlagController {
   }
 
   public async findFeatureFlags(
-    request: Request,
+    request: CustomRequest,
     response: Response
   ): Promise<Response> {
     const input: InputFindFeatureFlags = {
-      envType: request.params.env as EnvironmentTypes,
-      key: request.headers.authorization?.replace('Bearer ', '') as string,
-      featureName: request.query?.name_feature as string
+      id_user: request.user?.id as unknown as number,
+      identifierProject: request.params.indentifier
     };
     const result = await this.interactor.execute(input);
     return response.status(result.status).json(result.body);

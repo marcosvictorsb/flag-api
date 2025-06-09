@@ -2,8 +2,8 @@ import { Request, Response, Router } from 'express';
 import * as factories from '@domains/api/projects/factories';
 import { validateSchema } from '@middlewares/validate.schema';
 import { createProjectSchema } from '@domains/api/projects/schemas/';
-import { CustomRequest } from '../controllers';
 import { authMiddleware } from '@middlewares/auth.jwt.middlewares';
+import { CustomRequest } from '@protocols/http';
 
 const {
   createProjectController,

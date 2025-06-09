@@ -14,16 +14,22 @@ import {
   FindEnvironmentCriteria,
   IEnvironmentRepository
 } from '@domains/common';
+import {
+  FindProjectCriteria,
+  IProjectRepository
+} from '@domains/api/projects/interfaces';
+import { ProjectEntity } from '@domains/api/projects/entity';
 
 export type InputFindFeatureFlags = {
-  envType: EnvironmentTypes;
-  key: string;
-  featureName: string;
+  id?: number;
+  id_user: number;
+  identifierProject: string;
 };
 
 export type FindFeatureFlagGatewayDependencies = {
   featureFlagRepository: IFeatureFlagRepository;
   environmentRepository: IEnvironmentRepository;
+  projectRepository: IProjectRepository;
   logging: typeof logger;
 };
 
@@ -34,6 +40,9 @@ export interface IFindFeatureFlagGateway {
   findEnvironment(
     criteria: FindEnvironmentCriteria
   ): Promise<EnvironmentEntity | undefined>;
+  findProject(
+    criteria: FindProjectCriteria
+  ): Promise<ProjectEntity | undefined>;
   loggerInfo(message: string, data?: DataLogOutput): void;
   loggerError(message: string, data?: DataLogOutput): void;
 }

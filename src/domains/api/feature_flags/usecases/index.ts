@@ -1,2 +1,2 @@
 export * from './create.feature.flag.interactor';
-export * from '../../../public/usecases/find.feature.flag.interactor';
+export * from './find.feature.flag.interactor';

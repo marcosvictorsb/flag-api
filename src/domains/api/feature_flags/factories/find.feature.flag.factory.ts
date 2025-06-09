@@ -11,6 +11,8 @@ import { FindFeatureFlagController } from '@domains/public/controllers/';
 import { Presenter } from '@protocols/presenter';
 import { EnvironmentRepository } from '@domains/common';
 import EnvironmentModel from '@domains/common/environments/model/environment.model';
+import { ProjectRepository } from '@domains/api/projects/repository';
+import ProjectModel from '@domains/api/projects/model/project.model';
 
 const featureFlagRepository = new FeatureFlagRepository({
   model: FeatureFlagModel
@@ -19,9 +21,14 @@ const environmentRepository = new EnvironmentRepository({
   model: EnvironmentModel
 });
 
+const projectRepository = new ProjectRepository({
+  model: ProjectModel
+})
+
 const gatewayDependencies: FindFeatureFlagGatewayDependencies = {
   featureFlagRepository,
   environmentRepository,
+  projectRepository,
   logging: logger
 };
 
